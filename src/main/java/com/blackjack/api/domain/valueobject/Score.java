@@ -1,6 +1,6 @@
 package com.blackjack.api.domain.valueobject;
 
-import com.blackjack.api.domain.exception.NegativeScoreException;
+import com.blackjack.api.domain.exception.NegativeDomainException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -11,7 +11,7 @@ public class Score {
 
     private Score(int value) {
         if (value < 0) {
-            throw new NegativeScoreException();
+            throw new NegativeDomainException("The score cannot be negative!");
         }
         this.value = value;
     }

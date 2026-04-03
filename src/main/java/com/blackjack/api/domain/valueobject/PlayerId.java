@@ -1,5 +1,6 @@
 package com.blackjack.api.domain.valueobject;
 
+import com.blackjack.api.domain.exception.EmptyDomainException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -13,7 +14,7 @@ public class PlayerId {
 
     private PlayerId(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("Player Id cannot be empty");
+            throw new EmptyDomainException("Player Id cannot be empty");
         }
         this.value = value;
     }
