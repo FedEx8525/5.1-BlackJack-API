@@ -4,8 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum Suit {
-    HEARTS,
-    DIAMONDS,
-    CLUBS,
-    SPADES;
+    HEARTS("Hearts"),
+    DIAMONDS("Diamonds"),
+    CLUBS("Clubs"),
+    SPADES("Spades");
+
+    private final String symbol;
+
+    Suit(String symbol) {
+        this.symbol = symbol;
+    }
 }
