@@ -1,11 +1,8 @@
 package com.blackjack.api.domain.exception;
 
-public class NegativeAmountException extends RuntimeException {
-    public static final String DEFAULT_MESSAGE = "The amount cannot be negative!";
-    public NegativeAmountException(String message) {
-        super(message);
-    }
-    public NegativeAmountException() {
-        super(DEFAULT_MESSAGE);
+public class NegativeDomainException extends DomainException {
+    public static final String ERROR_CODE = "NEGATIVE_DOMAIN_ERROR";
+    public NegativeDomainException(String message) {
+        super(message, ERROR_CODE);
     }
 }
