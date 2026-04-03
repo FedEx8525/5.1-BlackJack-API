@@ -2,6 +2,7 @@ package com.blackjack.api.domain.model;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
+import com.blackjack.api.domain.exception.NullDomainException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -14,7 +15,7 @@ public class Card {
 
     private Card(Rank rank, Suit suit) {
         if (rank == null || suit == null) {
-            throw new IllegalArgumentException(("Rank and Suit cannot be null" ));
+            throw new NullDomainException("Rank and Suit cannot be null" );
         }
         this.rank = rank;
         this.suit = suit;

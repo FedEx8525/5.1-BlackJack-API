@@ -1,7 +1,7 @@
 package com.blackjack.api.domain.model;
 
-import com.blackjack.api.domain.exception.EmptyNameException;
-import com.blackjack.api.domain.exception.NegativeAmountException;
+import com.blackjack.api.domain.exception.EmptyDomainException;
+import com.blackjack.api.domain.exception.NegativeDomainException;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;
 import lombok.Builder;
@@ -30,7 +30,7 @@ public class Player {
 
     public static  Player create(String name, Money initialBalance) {
         if (name == null || name.isBlank()) {
-            throw new EmptyNameException();
+            throw new EmptyDomainException("The name cannot be empty!");
         }
 
         return Player.builder()
@@ -42,7 +42,7 @@ public class Player {
 
     public void placeBet(Money betAmount) {
         if (balance.isLessThan(betAmount)) {
-            throw new NegativeAmountException("Insufficient balance!");
+            throw new NegativeDomainException("Insufficient balance!");
         }
         this.balance = this.balance.subtract(betAmount);
     }

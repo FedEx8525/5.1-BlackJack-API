@@ -1,6 +1,6 @@
 package com.blackjack.api.domain.model;
 
-import com.blackjack.api.domain.exception.NullCardException;
+import com.blackjack.api.domain.exception.NullDomainException;
 import com.blackjack.api.domain.valueobject.Score;
 import lombok.Getter;
 
@@ -26,7 +26,7 @@ public class Hand {
 
     public void addCard(Card card) {
         if (card == null) {
-            throw new NullCardException();
+            throw new NullDomainException("The card cannot be null!");
         }
         cards.add(card);
     }

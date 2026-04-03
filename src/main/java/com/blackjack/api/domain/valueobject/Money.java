@@ -1,11 +1,10 @@
 package com.blackjack.api.domain.valueobject;
 
-import com.blackjack.api.domain.exception.NegativeAmountException;
+import com.blackjack.api.domain.exception.NegativeDomainException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.util.BitSet;
 
 @Getter
 @EqualsAndHashCode
@@ -15,7 +14,7 @@ public class Money {
 
     private Money(BigDecimal amount) {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new NegativeAmountException();
+            throw new NegativeDomainException("The amount cannot be negative!");
         }
         this.amount = amount;
     }

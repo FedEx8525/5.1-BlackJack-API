@@ -2,10 +2,13 @@ package com.blackjack.api.domain.model;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
-import com.blackjack.api.domain.exception.EmptyDeckException;
+import com.blackjack.api.domain.exception.EmptyDomainException;
 import lombok.Getter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
 
 @Getter
 public class Deck {
@@ -41,7 +44,7 @@ public class Deck {
     public Card deal() {
         if (cards.isEmpty()) {
             if(cards.isEmpty()) {
-                throw new EmptyDeckException();
+                throw new EmptyDomainException("There is no cards to deal!");
             }
         }
         return cards.pop();
