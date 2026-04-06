@@ -2,6 +2,7 @@ package com.blackjack.api.domain.model;
 
 
 import com.blackjack.api.domain.enums.GameStatus;
+import com.blackjack.api.domain.exception.NegativeDomainException;
 import com.blackjack.api.domain.exception.NullDomainException;
 import com.blackjack.api.domain.exception.ValidateGameException;
 import com.blackjack.api.domain.valueobject.GameId;
@@ -60,6 +61,16 @@ public class Game {
                 .dealerHand(dealerHand)
                 .deck(deck)
                 .build();
+    }
+
+    public void placeBet(Money betAmount) {
+        if(status != GameStatus.IN_PROGRESS) {
+            throw new ValidateGameException("You cannot bet. The game is finish");
+        }
+        if(betAmount == null || betAmount.equals(Money.zero())) {
+            throw new NegativeDomainException("The bet must be greater than zero");
+        }
+        this.bet = betAmount;
     }
 
     public void hit() {
