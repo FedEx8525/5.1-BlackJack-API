@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 public interface GameRepository {
     Mono<Game> save(Game game);
     Mono<Game> findById(GameId gameId);
-    Flux<Game> finiByPlayerId(PlayerId playerId);
+    Flux<Game> findByPlayerId(PlayerId playerId);
     Flux<Game> findAll();
     Mono<Void> deleteById(GameId gameId);
     Mono<Boolean> existsById(GameId gameId);
