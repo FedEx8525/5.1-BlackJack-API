@@ -3,22 +3,15 @@ package com.blackjack.api.domain.model;
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
 import com.blackjack.api.domain.exception.NullDomainException;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
-@Getter
-@EqualsAndHashCode
-public class Card {
+import java.util.Objects;
 
-    private final Rank rank;
-    private final Suit suit;
 
-    private Card(Rank rank, Suit suit) {
-        if (rank == null || suit == null) {
-            throw new NullDomainException("Rank and Suit cannot be null" );
-        }
-        this.rank = rank;
-        this.suit = suit;
+public record Card(Rank rank, Suit suit) {
+
+    public Card {
+        Objects.requireNonNull(rank, "The rank cannot be null");
+        Objects.requireNonNull(suit, "The suit cannot be null");
     }
 
     public static Card of(Rank rank, Suit suit) {
@@ -31,9 +24,5 @@ public class Card {
 
     public boolean isAce() {
         return rank == Rank.ACE;
-    }
-
-    public String toString() {
-        return rank.getSymbol() + suit.getSymbol();
     }
 }
