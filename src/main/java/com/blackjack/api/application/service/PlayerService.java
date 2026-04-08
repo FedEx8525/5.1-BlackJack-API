@@ -33,7 +33,7 @@ public class PlayerService implements
         return playerRepository.findAllOrderedByWinRate()
                 .map(player -> new RankingResponse.PlayerRankingEntry(
                         position.getAndIncrement(),
-                        player.getId().getValue(),
+                        player.getId().value(),
                         player.getName(),
                         player.getGamesWon(),
                         player.getGamesPlayed(),
