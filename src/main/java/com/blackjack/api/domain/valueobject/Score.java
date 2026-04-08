@@ -28,7 +28,7 @@ public class Score {
         return value > 21;
     }
 
-    public boolean isBlackJack() {
+    public boolean isBlackjack() {
         return value == 21;
     }
 

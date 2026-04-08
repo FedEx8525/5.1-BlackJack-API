@@ -38,13 +38,13 @@ public class Game {
     @Builder.Default
     private GameStatus status = GameStatus.IN_PROGRESS;
 
-    public static Game create(PlayerId playerId) {
+    public static Game create(PlayerId playerId, Deck deck) {
         if (playerId == null) {
             throw new NullDomainException("The playerId cannot be null!");
         }
-
-        Deck deck = Deck.createStandardDeck();
-        deck.shuffle();
+        if (deck == null) {
+            throw  new NullDomainException("The deck cannot be null");
+        }
 
         Hand playerHand = Hand.empty();
         Hand dealerHand = Hand.empty();

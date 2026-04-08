@@ -1,7 +1,6 @@
 package com.blackjack.api.application.dto.response;
 
 import com.blackjack.api.domain.enums.GameStatus;
-import com.blackjack.api.domain.model.Card;
 import com.blackjack.api.domain.model.Game;
 
 import java.time.LocalDateTime;
@@ -31,8 +30,8 @@ public record GameResponse(
                                 .toList();
 
         return new GameResponse(
-                game.getId().getValue(),
-                game.getPlayerId().getValue(),
+                game.getId().value(),
+                game.getPlayerId().value(),
                 playerCards,
                 dealerCards,
                 game.getPlayerHand().calculateScore().getValue(),

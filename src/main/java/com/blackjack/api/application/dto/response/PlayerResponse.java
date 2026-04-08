@@ -13,12 +13,13 @@ public record PlayerResponse(
 ) {
 
     public static PlayerResponse from(Player player) {
-        return new PlayerResponse(player.getId().getValue(),
-        player.getName(),
-        player.getBalance().getAmount().doubleValue(),
-        player.getGamesPlayed(),
-        player.getGamesWon(),
-        player.getGamesLost(),
-        player.getWinRate());
+        return new PlayerResponse(
+                player.getId().value(),
+                player.getName(),
+                player.getBalance().getAmount().doubleValue(),
+                player.getGamesPlayed(),
+                player.getGamesWon(),
+                player.getGamesLost(),
+                player.getWinRate());
     }
 }

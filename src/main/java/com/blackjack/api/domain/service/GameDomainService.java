@@ -5,6 +5,7 @@ import com.blackjack.api.domain.exception.InsufficientBalanceException;
 import com.blackjack.api.domain.exception.InvalidPlayException;
 import com.blackjack.api.domain.exception.NullDomainException;
 import com.blackjack.api.domain.exception.ValidateGameException;
+import com.blackjack.api.domain.model.Deck;
 import com.blackjack.api.domain.model.Game;
 import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.valueobject.Money;
@@ -24,8 +25,10 @@ public class GameDomainService {
         if (playerId == null) {
             throw new NullDomainException("PlayerId cannot be null");
         }
+        Deck deck = Deck.createStandardDeck();
+        deck.shuffle();
 
-        return Game.create(playerId);
+        return Game.create(playerId, deck);
     }
 
     public void processBet(Game game, Player player, Money betAmount) {
