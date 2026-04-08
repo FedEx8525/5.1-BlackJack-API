@@ -1,22 +1,17 @@
 package com.blackjack.api.domain.valueobject;
 
 import com.blackjack.api.domain.exception.EmptyDomainException;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
+import java.util.Objects;
 import java.util.UUID;
 
-@Getter
-@EqualsAndHashCode
-public class PlayerId {
+public record PlayerId(String value) {
 
-    private final String value;
-
-    private PlayerId(String value) {
-        if (value == null || value.isBlank()) {
+    public PlayerId {
+        Objects.requireNonNull(value, "The player Id cannot be null");
+        if (value.isBlank()) {
             throw new EmptyDomainException("Player Id cannot be empty");
         }
-        this.value = value;
     }
 
     public static PlayerId generate() {
@@ -25,10 +20,5 @@ public class PlayerId {
 
     public static PlayerId from(String value) {
         return new PlayerId(value);
-    }
-
-    @Override
-    public String toString() {
-        return value;
     }
 }
