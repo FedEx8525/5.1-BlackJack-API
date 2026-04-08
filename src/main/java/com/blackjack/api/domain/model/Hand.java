@@ -55,7 +55,7 @@ public class Hand {
     }
 
     public boolean isBlackjack() {
-        return cards.size() == BLACKJACK_CARDS && calculateScore().isBlackJack();
+        return cards.size() == BLACKJACK_CARDS && calculateScore().isBlackjack();
     }
 
     public boolean isBusted() {
