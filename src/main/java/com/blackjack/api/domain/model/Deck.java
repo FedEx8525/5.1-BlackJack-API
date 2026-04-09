@@ -57,4 +57,8 @@ public class Deck {
     public int remainingCards() {
         return cards.size();
     }
+
+    public static Deck from(Stack<Card> cards) {
+        return new Deck(cards);
+    }
 }
