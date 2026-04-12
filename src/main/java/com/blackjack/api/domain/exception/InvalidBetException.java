@@ -1,10 +1,9 @@
 package com.blackjack.api.domain.exception;
 
-public class InvalidBetException extends RuntimeException {
+public class InvalidBetException extends DomainException {
+    public static final String ERROR_CODE = "INVALID_BET_ERROR";
+
     public InvalidBetException(String message) {
-        super(message);
-    }
-    public InvalidBetException(String message, Throwable cause) {
-        super(message, cause);
+        super(message, ERROR_CODE);
     }
 }

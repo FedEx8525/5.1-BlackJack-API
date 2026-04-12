@@ -10,8 +10,8 @@ public record CardResponse(
 
     public static CardResponse from(Card card) {
         return new CardResponse(
-                card.getRank().name(),
-                card.getSuit().name(),
+                card.rank().name(),
+                card.suit().name(),
                 card.toString()
         );
     }

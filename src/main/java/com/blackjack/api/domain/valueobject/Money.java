@@ -23,6 +23,10 @@ public class Money {
         return new Money(BigDecimal.valueOf(amount));
     }
 
+    public static Money of(BigDecimal amount) {
+        return new Money(amount);
+    }
+
     public static Money zero() {
         return new Money(BigDecimal.ZERO);
     }

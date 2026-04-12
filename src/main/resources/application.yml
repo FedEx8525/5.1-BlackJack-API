@@ -16,10 +16,15 @@ spring:
     pool:
       initial-size: 10
       max-size: 20
+# SQL Initialization
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
 
-  # Server
+  # Server Configuration
   server:
-    port: 8080
+    port: ${SERVER_PORT:8080}
 
   # Logging
   logging:

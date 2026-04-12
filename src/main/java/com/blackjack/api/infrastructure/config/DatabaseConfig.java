@@ -1,0 +1,41 @@
+package com.blackjack.api.infrastructure.config;
+
+import io.r2dbc.spi.ConnectionFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
+import org.springframework.r2dbc.connection.init.ConnectionFactoryInitializer;
+import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
+
+@Slf4j
+@Configuration
+public class DatabaseConfig extends AbstractR2dbcConfiguration {
+
+    private final ConnectionFactory connectionFactory;
+
+    public DatabaseConfig(ConnectionFactory connectionFactory) {
+        this.connectionFactory = connectionFactory;
+    }
+
+    @Override
+    public ConnectionFactory connectionFactory() {
+        return connectionFactory;
+    }
+
+    @Bean
+    public ConnectionFactoryInitializer initializer(ConnectionFactory connectionFactory) {
+        ConnectionFactoryInitializer initializer = new ConnectionFactoryInitializer();
+        initializer.setConnectionFactory(connectionFactory);
+
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(new ClassPathResource("schema.sql"));
+
+        initializer.setDatabasePopulator(populator);
+
+        log.info("Database schema initialization configured");
+
+        return initializer;
+    }
+}
