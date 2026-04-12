@@ -2,6 +2,7 @@ package com.blackjack.api.domain.model;
 
 import com.blackjack.api.domain.exception.EmptyDomainException;
 import com.blackjack.api.domain.exception.NegativeDomainException;
+import com.blackjack.api.domain.exception.NullDomainException;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;
 import lombok.Builder;
@@ -38,6 +39,13 @@ public class Player {
                 .name(name)
                 .balance(initialBalance)
                 .build();
+    }
+
+    public void updateName(String newName) {
+        if (newName == null || newName.isBlank()) {
+            throw new NullDomainException("Name cannot be null");
+        }
+        this.name = newName;
     }
 
     public void placeBet(Money betAmount) {
