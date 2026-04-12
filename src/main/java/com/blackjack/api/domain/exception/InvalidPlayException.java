@@ -1,10 +1,9 @@
 package com.blackjack.api.domain.exception;
 
-public class InvalidPlayException extends RuntimeException {
+public class InvalidPlayException extends DomainException {
+    public static final String ERROR_CODE = "INVALID_PLAYER_ERROR";
+
     public InvalidPlayException(String message) {
-        super(message);
-    }
-    public InvalidPlayException(String message, Throwable cause) {
-        super(message, cause);
+        super(message, ERROR_CODE);
     }
 }
