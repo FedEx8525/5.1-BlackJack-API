@@ -2,10 +2,8 @@ package com.blackjack.api.domain.model;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
-import com.blackjack.api.domain.exception.NullDomainException;
 
 import java.util.Objects;
-
 
 public record Card(Rank rank, Suit suit) {
 
@@ -24,5 +22,10 @@ public record Card(Rank rank, Suit suit) {
 
     public boolean isAce() {
         return rank == Rank.ACE;
+    }
+
+    @Override
+    public String toString() {
+        return rank.getSymbol() + suit.getSymbol();
     }
 }
