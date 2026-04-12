@@ -19,7 +19,7 @@ public class Money {
         this.amount = amount;
     }
 
-    public static Money of(double amount) {
+    public static Money of(BigDecimal amount) {
         return new Money(BigDecimal.valueOf(amount));
     }
 
