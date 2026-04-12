@@ -43,9 +43,7 @@ public class Deck {
 
     public Card deal() {
         if (cards.isEmpty()) {
-            if(cards.isEmpty()) {
-                throw new EmptyDomainException("There is no cards to deal!");
-            }
+            throw new EmptyDomainException("There is no cards to deal!");
         }
         return cards.pop();
     }
