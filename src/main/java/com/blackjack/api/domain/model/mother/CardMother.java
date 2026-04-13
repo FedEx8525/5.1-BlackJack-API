@@ -28,12 +28,20 @@ public class CardMother {
         return Card.of(Rank.KING, Suit.SPADES);
     }
 
-    public static Card fiveOfSpades() {
-        return Card.of(Rank.FIVE, Suit.SPADES);
+    public static Card queenOfSpades() {
+        return Card.of(Rank.QUEEN, Suit.SPADES);
     }
 
-    public static Card sixOfSpades() {
-        return Card.of(Rank.SIX, Suit.SPADES);
+    public static Card jackOfSpades() {
+        return Card.of(Rank.JACK, Suit.SPADES);
+    }
+
+    public static Card tenOfSpades() {
+        return Card.of(Rank.TEN, Suit.SPADES);
+    }
+
+    public static Card nineOfSpades() {
+        return Card.of(Rank.NINE, Suit.SPADES);
     }
 
     public static Card sevenOfSpades() {
@@ -48,20 +56,16 @@ public class CardMother {
         return Card.of(Rank.SEVEN, Suit.CLUBS);
     }
 
-    public static Card nineOfSpades() {
-        return Card.of(Rank.NINE, Suit.SPADES);
+    public static Card sixOfSpades() {
+        return Card.of(Rank.SIX, Suit.SPADES);
     }
 
-    public static Card tenOfSpades() {
-        return Card.of(Rank.TEN, Suit.SPADES);
+    public static Card fiveOfSpades() {
+        return Card.of(Rank.FIVE, Suit.SPADES);
     }
 
     public static List<Card> blackjackHand() {
         return List.of(aceOfSpades(), kingOfSpades());
-    }
-
-    public static List<Card> twentyOneWithoutBlackjack() {
-        return List.of(sevenOfSpades(), sevenOfHearts(), sevenOfClubs());
     }
 
     public static List<Card> bustedHand() {
