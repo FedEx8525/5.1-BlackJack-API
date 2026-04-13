@@ -8,44 +8,92 @@ import java.util.List;
 
 public class CardMother {
 
+    public static Card aceOfSpades() {
+        return Card.of(Rank.ACE, Suit.SPADES);
+    }
+
+    public static Card aceOfHearts() {
+        return Card.of(Rank.ACE, Suit.HEARTS);
+    }
+
+    public static Card aceOfClubs() {
+        return Card.of(Rank.ACE, Suit.CLUBS);
+    }
+
+    public static Card aceOfDiamonds() {
+        return Card.of(Rank.ACE, Suit.DIAMONDS);
+    }
+
+    public static Card kingOfSpades() {
+        return Card.of(Rank.KING, Suit.SPADES);
+    }
+
+    public static Card fiveOfSpades() {
+        return Card.of(Rank.FIVE, Suit.SPADES);
+    }
+
+    public static Card sixOfSpades() {
+        return Card.of(Rank.SIX, Suit.SPADES);
+    }
+
+    public static Card sevenOfSpades() {
+        return Card.of(Rank.SEVEN, Suit.SPADES);
+    }
+
+    public static Card sevenOfHearts() {
+        return Card.of(Rank.SEVEN, Suit.HEARTS);
+    }
+
+    public static Card sevenOfClubs() {
+        return Card.of(Rank.SEVEN, Suit.CLUBS);
+    }
+
+    public static Card nineOfSpades() {
+        return Card.of(Rank.NINE, Suit.SPADES);
+    }
+
+    public static Card tenOfSpades() {
+        return Card.of(Rank.TEN, Suit.SPADES);
+    }
+
     public static List<Card> blackjackHand() {
-        return List.of(Card.of(Rank.ACE, Suit.SPADES), Card.of(Rank.KING, Suit.HEARTS));
+        return List.of(aceOfSpades(), kingOfSpades());
     }
 
     public static List<Card> twentyOneWithoutBlackjack() {
-        return List.of(Card.of(Rank.SEVEN, Suit.SPADES), Card.of(Rank.SEVEN, Suit.HEARTS), Card.of(Rank.SEVEN, Suit.CLUBS));
+        return List.of(sevenOfSpades(), sevenOfHearts(), sevenOfClubs());
     }
 
     public static List<Card> bustedHand() {
-        return List.of(Card.of(Rank.TEN, Suit.SPADES), Card.of(Rank.KING, Suit.SPADES), Card.of(Rank.FIVE, Suit.SPADES));
+        return List.of(tenOfSpades(), kingOfSpades(), fiveOfSpades());
     }
 
     public static List<Card> lowValueHand() {
-        return List.of(Card.of(Rank.FIVE, Suit.SPADES), Card.of(Rank.SIX, Suit.SPADES));
+        return List.of(tenOfSpades(), sixOfSpades());
     }
 
     public static List<Card> highValueHand() {
-        return List.of(Card.of(Rank.TEN, Suit.SPADES), Card.of(Rank.NINE, Suit.SPADES));
+        return List.of(tenOfSpades(), nineOfSpades());
     }
 
     public static List<Card> multipleAcesHand() {
-        return List.of(Card.of(Rank.ACE, Suit.SPADES), Card.of(Rank.ACE, Suit.CLUBS), Card.of(Rank.ACE, Suit.DIAMONDS));
+        return List.of(aceOfSpades(), aceOfClubs(), aceOfHearts());
     }
 
     public static List<Card> dealerMustHit() {
-        return List.of(Card.of(Rank.TEN, Suit.SPADES), Card.of(Rank.FIVE, Suit.SPADES));
+        return List.of(tenOfSpades(), fiveOfSpades());
     }
 
     public static List<Card> dealerMustStand() {
-        return List.of(Card.of(Rank.TEN, Suit.SPADES), Card.of(Rank.SEVEN, Suit.SPADES));
+        return List.of(tenOfSpades(), sevenOfSpades());
     }
 
     public static List<Card> dealerBlackjack() {
-        return List.of(Card.of(Rank.ACE, Suit.SPADES), Card.of(Rank.QUEEN, Suit.SPADES));
+        return List.of(aceOfSpades(), kingOfSpades());
     }
 
     public static List<Card> dealerBusted() {
-        return List.of(Card.of(Rank.TEN, Suit.SPADES), Card.of(Rank.TEN, Suit.DIAMONDS), Card.of(Rank.FIVE, Suit.SPADES));
+        return List.of(tenOfSpades(), fiveOfSpades(), kingOfSpades());
     }
 
     public static class PlayerBlackjackWins {
