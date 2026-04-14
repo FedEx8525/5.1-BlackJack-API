@@ -33,6 +33,21 @@ public class HandMother {
         return hand;
     }
 
+    public static Hand multipleAcesHand() {
+        Hand hand = Hand.empty();
+        hand.addCard(aceOfSpades());
+        hand.addCard(aceOfHearts());
+        hand.addCard(nineOfSpades());
+        return hand;
+    }
+
+    public static Hand highValueHand() {
+        Hand hand = Hand.empty();
+        hand.addCard(tenOfSpades());
+        hand.addCard(nineOfSpades());
+        return hand;
+    }
+
     public static Hand twoAces() {
         Hand hand = Hand.empty();
         hand.addCard(aceOfSpades());

@@ -80,10 +80,6 @@ public class CardMother {
         return List.of(tenOfSpades(), nineOfSpades());
     }
 
-    public static List<Card> multipleAcesHand() {
-        return List.of(aceOfSpades(), aceOfClubs(), aceOfHearts());
-    }
-
     public static List<Card> dealerMustHit() {
         return List.of(tenOfSpades(), fiveOfSpades());
     }
