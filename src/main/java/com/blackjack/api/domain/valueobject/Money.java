@@ -52,6 +52,19 @@ public class Money {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Money money = (Money) o;
+        return amount != null && money.amount != null && amount.compareTo(money.amount) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return amount != null ? amount.stripTrailingZeros().hashCode() : 0;
+    }
+
+    @Override
     public String toString() {
         return amount.toString();
     }
