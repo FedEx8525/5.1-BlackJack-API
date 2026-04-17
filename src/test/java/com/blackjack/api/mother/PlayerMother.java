@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.model.mother;
+package com.blackjack.api.mother;
 
 import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.valueobject.Money;
@@ -35,22 +35,6 @@ public class PlayerMother {
 
     public static Player brokePlayer() {
         return Player.create("Broke Player", Money.of(0.0));
-    }
-
-    public static Player playerWithNameAndBalance(String name, double balance) {
-        return Player.create(name, Money.of(balance));
-    }
-
-    public static Player playerCanBetMinimum() {
-        return Player.create("Min Bet", Money.of(10.0));
-    }
-
-    public static Player playerCanBetMaximum() {
-        return Player.create("Max Bet", Money.of(500.0));
-    }
-
-    public static Player playerCannotBet() {
-        return Player.create("Cannot bet", Money.of(5.0));
     }
 
     public static  Player topRankedPlayer() {
