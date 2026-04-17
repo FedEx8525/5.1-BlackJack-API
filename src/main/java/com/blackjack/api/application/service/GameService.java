@@ -53,27 +53,31 @@ public class GameService implements
         log.info("Creating a new game for player " + command.playerName());
 
         return findOrCreatePlayer(command.playerName())
-                .flatMap( player -> {
+                .flatMap(player -> {
                     Game game = gameDomainService.createNewGame(player.getId());
 
                     return gameRepository.save(game);
                 })
-                .doOnSuccess(game -> log.info("Closing game: {}", game.getId()))
-                .map(GameResponse::from);
+
+                .doOnNext(game -> log.info("Game created successfully with ID: {}", game.getId()))
+                .map(GameResponse::from)
+                .onErrorResume(e -> {
+                    log.error("Error creating game for {}: {}", command.playerName(), e.getMessage());
+                    return Mono.error(e);
+                });
     }
 
     private Mono<Player> findOrCreatePlayer(String playerName) {
         return playerRepository.findByName(playerName)
-                .switchIfEmpty(
-                        Mono.defer(() -> {
-                            log.info("Creating new player: {}", playerName);
-                                Player newPlayer = Player.create(
-                                        playerName,
-                                        Money.of(initialBalance)
-                                );
-                                return playerRepository.save(newPlayer);
-                        })
-                );
+                .switchIfEmpty(Mono.defer(() -> {
+                    log.info("Player not found. Creating new player: {}", playerName);
+                    Player newPlayer = Player.create(
+                            playerName,
+                            Money.of(initialBalance)
+                    );
+
+                    return playerRepository.save(newPlayer);
+                }));
     }
 
     @Override
@@ -86,15 +90,15 @@ public class GameService implements
         return gameRepository.findById(gameId)
                 .switchIfEmpty(Mono.error(new GameNotFoundException(gameId)))
                 .flatMap(game -> playerRepository.findById(game.getPlayerId())
-                .switchIfEmpty(Mono.error(
-                        new PlayerNotFoundException(game.getPlayerId())
+                        .switchIfEmpty(Mono.error(
+                                new PlayerNotFoundException(game.getPlayerId())
                         ))
-                .flatMap(player -> {
-                    gameDomainService.processBet(game, player, betAmount);
+                        .flatMap(player -> {
+                            gameDomainService.processBet(game, player, betAmount);
 
-                    return playerRepository.save(player)
-                            .then(gameRepository.save(game));
-                })
+                            return playerRepository.save(player)
+                                    .then(gameRepository.save(game));
+                        })
                 )
                 .doOnSuccess(game -> log.info("Process bet: {}", betAmount))
                 .map(GameResponse::from);
@@ -109,8 +113,8 @@ public class GameService implements
         return gameRepository.findById(gameId)
                 .switchIfEmpty(Mono.error(new GameNotFoundException(gameId)))
                 .flatMap(game -> playerRepository.findById(game.getPlayerId())
-                        .switchIfEmpty(Mono.error( new PlayerNotFoundException(game.getPlayerId())
-                ))
+                        .switchIfEmpty(Mono.error(new PlayerNotFoundException(game.getPlayerId())
+                        ))
                         .flatMap(player -> {
                             gameDomainService.executeAction(game, player, command.action());
 
