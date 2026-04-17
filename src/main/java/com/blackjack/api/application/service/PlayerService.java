@@ -54,7 +54,7 @@ public class PlayerService implements
     @Override
     @Transactional
     public Mono<PlayerResponse> execute(UpdatePlayerNameCommand command) {
-        log.info("Actualizando nombre del jugador {} a {}", command.playerId(), command.newName());
+        log.info("Updating player {} name  to {}", command.playerId(), command.newName());
 
         PlayerId playerId = PlayerId.from(command.playerId());
 

@@ -54,13 +54,23 @@ public class Game {
         playerHand.addCard(deck.deal());
         dealerHand.addCard(deck.deal());
 
-        return Game.builder()
+        Game game = Game.builder()
                 .id(GameId.generate())
                 .playerId(playerId)
                 .playerHand(playerHand)
                 .dealerHand(dealerHand)
                 .deck(deck)
                 .build();
+
+        if (playerHand.isBlackjack() && dealerHand.isBlackjack()) {
+            game.status = GameStatus.TIE;
+        } else if (playerHand.isBlackjack()) {
+            game.status = GameStatus.PLAYER_BLACKJACK;
+        } else if (dealerHand.isBlackjack()) {
+            game.status = GameStatus.DEALER_WIN;
+        }
+
+        return game;
     }
 
     public void placeBet(Money betAmount) {
@@ -96,28 +106,22 @@ public class Game {
         Score playerScore = playerHand.calculateScore();
         Score dealerScore = dealerHand.calculateScore();
 
-        if (playerHand.isBlackjack() && !dealerHand.isBlackjack()) {
-            this.status = GameStatus.PLAYER_BLACKJACK;
-            return;
-        }
-
-        if (playerScore.isBusted()) {
+        if (playerHand.isBusted()) {
             this.status = GameStatus.PLAYER_BUSTED;
             return;
         }
 
-        if (dealerScore.isBusted() || playerScore.beats(dealerScore)) {
+        if (dealerHand.isBusted()) {
             this.status = GameStatus.PLAYER_WIN;
             return;
         }
-
-        if (dealerScore.beats(playerScore)) {
+        if (playerScore.getValue() > dealerScore.getValue()) {
+            this.status = GameStatus.PLAYER_WIN;
+        } else if (dealerScore.getValue() > playerScore.getValue()) {
             this.status = GameStatus.DEALER_WIN;
-            return;
+        } else {
+            this.status = GameStatus.TIE;
         }
-
-        this.status = GameStatus.TIE;
-
     }
 
     private void validateGameInProgress() {
@@ -131,7 +135,7 @@ public class Game {
 
     public Money calculateWinnings() {
         return switch (status) {
-            case PLAYER_BLACKJACK -> bet.multiply(2).add(bet.multiply(1));
+            case PLAYER_BLACKJACK -> bet.multiply(2).add(bet.divide(2));
             case PLAYER_WIN -> bet.multiply(2);
             case TIE -> bet;
             case DEALER_WIN, PLAYER_BUSTED -> Money.zero();

@@ -9,6 +9,14 @@ import org.springframework.stereotype.Component;
 public class PlayerMapper {
 
     public PlayerEntity toEntity(Player player) {
+        return createEntity(player, true);
+    }
+
+    public PlayerEntity toUpdateEntity(Player player) {
+        return createEntity(player, false);
+    }
+
+    public PlayerEntity createEntity(Player player, boolean isNew) {
         return PlayerEntity.builder()
                 .id(player.getId().value())
                 .name(player.getName())
@@ -16,6 +24,7 @@ public class PlayerMapper {
                 .gamesPlayed(player.getGamesPlayed())
                 .gamesWon(player.getGamesWon())
                 .gamesLost(player.getGamesLost())
+                .isNew(isNew)
                 .build();
     }
 

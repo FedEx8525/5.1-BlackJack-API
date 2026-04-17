@@ -26,11 +26,20 @@ public class PlayerMySQLAdapter implements PlayerRepository {
     public Mono<Player> save(Player player) {
         log.debug("Saving player in MySQL: {}", player.getId());
 
-        PlayerEntity entity = mapper.toEntity(player);
-
-        return springDataPlayerRepository.save(entity)
+        return springDataPlayerRepository.existsById(player.getId().value())
+                .flatMap(exists -> {
+                    PlayerEntity entity;
+                    if (exists) {
+                        log.trace("Updating existing player: {}", player.getName());
+                        entity = mapper.toUpdateEntity(player);
+                    } else {
+                        log.trace("Inserting new player: {}", player.getName());
+                        entity = mapper.toEntity(player);
+                    }
+                    return springDataPlayerRepository.save(entity);
+                })
                 .map(mapper::toDomain)
-                .doOnSuccess(p -> log.debug("Player saved: {}", p.getId()));
+                .doOnNext(p -> log.debug("Player saved: {}", p.getId()));
     }
 
     @Override
@@ -39,7 +48,7 @@ public class PlayerMySQLAdapter implements PlayerRepository {
 
         return springDataPlayerRepository.findById(playerId.value())
                 .map(mapper::toDomain)
-                .doOnSuccess(p -> log.debug("Payer found: {}", p.getName()));
+                .doOnNext(p -> log.debug("Player found: {}", p.getName()));
     }
 
     @Override
@@ -48,7 +57,8 @@ public class PlayerMySQLAdapter implements PlayerRepository {
 
         return springDataPlayerRepository.findByName(name)
                 .map(mapper::toDomain)
-                .doOnSuccess(p -> log.debug("Player found: {}", p.getName()));
+                .doOnNext(p -> log.debug("Player found with name: {}", p.getName()))
+                .doOnTerminate(() -> log.trace("Search by name finished for: {}", name));
     }
 
     @Override
