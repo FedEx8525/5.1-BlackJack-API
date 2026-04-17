@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.service;
+package com.blackjack.api.domain.application;
 
 import com.blackjack.api.application.dto.command.UpdatePlayerNameCommand;
 import com.blackjack.api.application.dto.query.GetRankingQuery;

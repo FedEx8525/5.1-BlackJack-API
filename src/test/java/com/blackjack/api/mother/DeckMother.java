@@ -75,14 +75,29 @@ public class DeckMother {
         return Deck.from(cards);
     }
 
-    private static void addCardsToStack(Stack<Card> cards) {
-        cards.push(nineOfSpades());
+    public static Deck highCardsDeck() {
+        Stack<Card> cards = new Stack<>();
+
+        cards.push(aceOfHearts());
+        cards.push(aceOfDiamonds());
         cards.push(aceOfClubs());
+        cards.push(kingOfSpades());
+        cards.push(queenOfSpades());
+        cards.push(jackOfSpades());
+        cards.push(tenOfSpades());
+
+        return Deck.from(cards);
+    }
+
+    private static void addCardsToStack(Stack<Card> cards) {
+        cards.push(aceOfClubs());
+        cards.push(aceOfHearts());
+        cards.push(aceOfDiamonds());
         cards.push(fiveOfSpades());
         cards.push(sevenOfClubs());
         cards.push(sixOfSpades());
         cards.push(sevenOfHearts());
-        cards.push(aceOfDiamonds());
-        cards.push(aceOfHearts());
+        cards.push(nineOfSpades());
+
     }
 }

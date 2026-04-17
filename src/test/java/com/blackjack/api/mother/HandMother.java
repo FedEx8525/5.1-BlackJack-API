@@ -1,5 +1,7 @@
 package com.blackjack.api.domain.model.mother;
 
+import com.blackjack.api.domain.enums.Rank;
+import com.blackjack.api.domain.model.Card;
 import com.blackjack.api.domain.model.Hand;
 
 import static com.blackjack.api.domain.model.mother.CardMother.*;
@@ -45,6 +47,20 @@ public class HandMother {
         Hand hand = Hand.empty();
         hand.addCard(tenOfSpades());
         hand.addCard(nineOfSpades());
+        return hand;
+    }
+
+    public static Hand handWithValue(int value) {
+        Hand hand = Hand.empty();
+
+        if(value == 21) {
+            return blackjackHand();
+        } else if(value == 15) {
+            hand.addCard(tenOfSpades());
+            hand.addCard(fiveOfSpades());
+        } else if(value == 10) {
+            hand.addCard(tenOfSpades());
+        }
         return hand;
     }
 

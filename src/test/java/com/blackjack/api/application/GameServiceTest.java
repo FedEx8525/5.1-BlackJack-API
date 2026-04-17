@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.service;
+package com.blackjack.api.domain.application;
 
 import com.blackjack.api.application.dto.command.CreateGameCommand;
 import com.blackjack.api.application.dto.command.PlaceBetCommand;
@@ -15,6 +15,7 @@ import com.blackjack.api.domain.exception.InvalidBetException;
 import com.blackjack.api.domain.exception.PlayerNotFoundException;
 import com.blackjack.api.domain.model.Game;
 import com.blackjack.api.domain.model.Player;
+import com.blackjack.api.domain.service.GameDomainService;
 import com.blackjack.api.domain.valueobject.GameId;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;

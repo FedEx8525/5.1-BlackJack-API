@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.model;
+package com.blackjack.api.domain.valueobject;
 
 import com.blackjack.api.domain.valueobject.Score;
 import org.junit.jupiter.api.DisplayName;
