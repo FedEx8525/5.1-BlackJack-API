@@ -122,29 +122,6 @@ public class Game {
         } else {
             this.status = GameStatus.TIE;
         }
-
-        /**if (playerHand.isBlackjack() && !dealerHand.isBlackjack()) {
-            this.status = GameStatus.PLAYER_BLACKJACK;
-            return;
-        }
-
-        if (playerScore.isBusted()) {
-            this.status = GameStatus.PLAYER_BUSTED;
-            return;
-        }
-
-        if (dealerScore.isBusted() || playerScore.beats(dealerScore)) {
-            this.status = GameStatus.PLAYER_WIN;
-            return;
-        }
-
-        if (playerScore.beats(dealerScore)) {
-            this.status = GameStatus.PLAYER_WIN;
-        } else if (dealerScore.beats(playerScore)) {
-            this.status = GameStatus.DEALER_WIN;
-        } else {
-            this.status = GameStatus.TIE;
-        }**/
     }
 
     private void validateGameInProgress() {
