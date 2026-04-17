@@ -111,13 +111,13 @@ public class Game {
             return;
         }
 
-        if (dealerScore.beats(playerScore)) {
+        if (playerScore.beats(dealerScore)) {
+            this.status = GameStatus.PLAYER_WIN;
+        } else if (dealerScore.beats(playerScore)) {
             this.status = GameStatus.DEALER_WIN;
-            return;
+        } else {
+            this.status = GameStatus.TIE;
         }
-
-        this.status = GameStatus.TIE;
-
     }
 
     private void validateGameInProgress() {
