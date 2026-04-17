@@ -1,0 +1,92 @@
+spring:
+  application:
+    name: blackjack-api
+
+  #MongoDB Reactive Configuration
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://localhost:27017/blackjack}
+      auto-index-creation: true
+
+  # R2DBC MySQL Reactive Configuration
+  r2dbc:
+    url: ${DB_URL:r2dbc:mysql://localhost:3306/blackjack}
+    username: ${DB_USER:blackjack_user}
+    password: ${DB_PASSWORD:blackjack_pass}
+    pool:
+      initial-size: 5
+      max-size: 10
+      max-life-time: 30m
+# SQL Initialization
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+  # Server Configuration
+  server:
+    port: ${SERVER_PORT:8080}
+
+  # Logging
+  logging:
+    level:
+      root: INFO
+      com.blackjack.api: DEBUG
+      org.springframework.data.mongodb: DEBUG
+      org.springframework.data.r2dbc: DEBUG
+      io.r2dbc.mysql: DEBUG
+
+  # SpringDoc Swagger
+  springdoc:
+    api-docs:
+      path: /v3/api-docs
+    swagger-ui:
+      path: /swagger-ui.html
+      enabled: true
+      operations-sorter: method
+      tags-sorter: alpha
+
+  # Application Custom Properties
+  blackjack:
+    game:
+      initial-balance: 1000
+      min-bet: 10
+      max-bet: 500
+
+---
+
+# Develop profile
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  level:
+    com.blackjack.api: TRACE
+
+---
+
+# Production profile
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  data:
+    mongodb:
+      uri: ${MONGO_URI:mongodb://blackjack-mongodb:27017/blackjack}
+
+  r2dbc:
+    url: ${DB_URL:r2dbc:mysql://blackjack-mysql:3306/blackjack?sslMode=disabled&allowPublicKeyRetrieval=true&connectTimeout=PT1M}
+    properties:
+      sslMode: disabled
+
+logging:
+  level:
+    root: WARN
+    com.blackjack.api: INFO
+    org.springframework.data.r2dbc: INFO
+    org.springframework.data.mongodb: INFO
+    io.r2dbc.mysql: INFO
+    io.netty: WARN

@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+
+  # MongoDB
+  mongodb:
+    image: mongo:7.0
+    container_name: blackjack-mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: blackjack
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - blackjack-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  #MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: blackjack-mysql
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: blackjack
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: blackjack_user
+      MYSQL_PASSWORD: blackjack_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - blackjack-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  #JavaAPI
+  api:
+    build: .
+    container_name: blackjack-api
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_URL=r2dbc:mysql://mysql:3306/blackjack?sslMode=disabled&allowPublicKeyRetrieval=true
+      - DB_USER=blackjack_user
+      - DB_PASSWORD=blackjack_pass
+      - MONGO_URI=mongodb://mongodb:27017/blackjack
+      - SPRING_PROFILES_ACTIVE=prod
+      - SERVER_PORT=8080
+    networks:
+      - blackjack-network
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+volumes:
+  mongodb_data:
+  mysql_data:
+
+networks:
+  blackjack-network:
+    driver: bridge

@@ -1,0 +1,1050 @@
+{
+  "info": {
+    "_postman_id": "4f740144-198f-48a8-8d0f-0f146cc74045",
+    "name": "OpenAPI definition",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52730960",
+    "_collection_link": "https://go.postman.co/collection/52730960-4f740144-198f-48a8-8d0f-0f146cc74045?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "play",
+      "item": [
+        {
+          "name": "{playerId}",
+          "item": [
+            {
+              "name": "Change player name",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"newName\": \"New Laia\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/play/f340e02b-f30f-4f79-b84d-6960953bb903",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "play",
+                    "f340e02b-f30f-4f79-b84d-6960953bb903"
+                  ]
+                },
+                "description": "Update the name of an existing player"
+              },
+              "response": [
+                {
+                  "name": "Name successfully updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"newName\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/play/:playerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "play",
+                        ":playerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "playerId",
+                          "value": "string",
+                          "description": "Game Id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"playerId\": \"string\",\n  \"name\": \"string\",\n  \"balance\": 2832.782891136991,\n  \"gamesPlayed\": 9921,\n  \"gameWon\": 6776,\n  \"gameLost\": 8945,\n  \"winRate\": 9191.037663841433\n}"
+                },
+                {
+                  "name": "Ivalid data",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"newName\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/play/:playerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "play",
+                        ":playerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "playerId",
+                          "value": "string",
+                          "description": "Game Id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"playerId\": \"string\",\n  \"name\": \"string\",\n  \"balance\": 2832.782891136991,\n  \"gamesPlayed\": 9921,\n  \"gameWon\": 6776,\n  \"gameLost\": 8945,\n  \"winRate\": 9191.037663841433\n}"
+                },
+                {
+                  "name": "Player NOT found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"newName\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/play/:playerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "play",
+                        ":playerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "playerId",
+                          "value": "string",
+                          "description": "Game Id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"playerId\": \"string\",\n  \"name\": \"string\",\n  \"balance\": 2832.782891136991,\n  \"gamesPlayed\": 9921,\n  \"gameWon\": 6776,\n  \"gameLost\": 8945,\n  \"winRate\": 9191.037663841433\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "game",
+      "item": [
+        {
+          "name": "{id}",
+          "item": [
+            {
+              "name": "play",
+              "item": [
+                {
+                  "name": "Execute action",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"action\": \"HIT\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/game/c7ef460d-56e7-4ef2-95d1-57c2dd7811a6/play",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        "c7ef460d-56e7-4ef2-95d1-57c2dd7811a6",
+                        "play"
+                      ]
+                    },
+                    "description": "Perform an action in the game (HIT, STAND, DOUBLE)"
+                  },
+                  "response": [
+                    {
+                      "name": "Action successfully executed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"HIT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/play",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "play"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                    },
+                    {
+                      "name": "Invalid action",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"HIT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/play",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "play"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                    },
+                    {
+                      "name": "Game NOT found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"HIT\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/play",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "play"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "bet",
+              "item": [
+                {
+                  "name": "Place a bet",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"betAmount\": 100.0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/game/c7ef460d-56e7-4ef2-95d1-57c2dd7811a6/bet",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        "c7ef460d-56e7-4ef2-95d1-57c2dd7811a6",
+                        "bet"
+                      ]
+                    },
+                    "description": "Set your bet for the game"
+                  },
+                  "response": [
+                    {
+                      "name": "Bet successfully placed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"betAmount\": 7961.768917960426\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/bet",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "bet"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                    },
+                    {
+                      "name": "Invalid bet or insufficient balance",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"betAmount\": 7961.768917960426\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/bet",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "bet"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                    },
+                    {
+                      "name": "Game NOT found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "*/*"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"betAmount\": 7961.768917960426\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/bet",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "bet"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "*/*"
+                        }
+                      ],
+                      "cookie": [],
+                      "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "delete",
+              "item": [
+                {
+                  "name": "Delete game",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/game/c7ef460d-56e7-4ef2-95d1-57c2dd7811a6/delete",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        "c7ef460d-56e7-4ef2-95d1-57c2dd7811a6",
+                        "delete"
+                      ]
+                    },
+                    "description": "Delete an existing game"
+                  },
+                  "response": [
+                    {
+                      "name": "Game successfully deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/delete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "delete"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    },
+                    {
+                      "name": "Game NOT found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/game/:id/delete",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "game",
+                            ":id",
+                            "delete"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "string",
+                              "description": "Game Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Get game details",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/game/c7ef460d-56e7-4ef2-95d1-57c2dd7811a6",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "game",
+                    "c7ef460d-56e7-4ef2-95d1-57c2dd7811a6"
+                  ]
+                },
+                "description": "Get all game details by ID"
+              },
+              "response": [
+                {
+                  "name": "Game found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/game/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "string",
+                          "description": "Game Id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                },
+                {
+                  "name": "Game NOT found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/game/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "string",
+                          "description": "Game Id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "new",
+          "item": [
+            {
+              "name": "Create new game",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"playerName\": \"Laia\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/game/new",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "game",
+                    "new"
+                  ]
+                },
+                "description": "Create a new Blackjack game. If the player does not exist, it will be created automatically"
+              },
+              "response": [
+                {
+                  "name": "Game successfully created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"playerName\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/game/new",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        "new"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                },
+                {
+                  "name": "Invalid data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "*/*"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"playerName\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/game/new",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "game",
+                        "new"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "*/*"
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"gameId\": \"string\",\n  \"playerId\": \"string\",\n  \"playerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"dealerHand\": [\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    },\n    {\n      \"rank\": \"string\",\n      \"suit\": \"string\",\n      \"display\": \"string\"\n    }\n  ],\n  \"playerScore\": 9514,\n  \"dealerScore\": 8607,\n  \"bet\": 5156.17093132182,\n  \"status\": \"TIE\",\n  \"createdAt\": \"1979-02-02T10:46:31.121Z\",\n  \"remainingCards\": 6145\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ranking",
+      "item": [
+        {
+          "name": "Get ranking",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/ranking",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "ranking"
+              ]
+            },
+            "description": "It retrieves the list of players ordered by win rate"
+          },
+          "response": [
+            {
+              "name": "Ranking successfully obtained",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ranking",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ranking"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"ranking\": [\n    {\n      \"position\": 1172,\n      \"playerId\": \"string\",\n      \"name\": \"string\",\n      \"gamesWon\": 6210,\n      \"gamesPlayed\": 528,\n      \"winRate\": 6148.0766519610515\n    },\n    {\n      \"position\": 2116,\n      \"playerId\": \"string\",\n      \"name\": \"string\",\n      \"gamesWon\": 9015,\n      \"gamesPlayed\": 1,\n      \"winRate\": 3408.0640279455233\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
