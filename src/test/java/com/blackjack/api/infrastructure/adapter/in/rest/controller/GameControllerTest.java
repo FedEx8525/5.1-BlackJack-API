@@ -28,7 +28,7 @@ import static org.mockito.Mockito.*;
 
 @WebFluxTest(GameController.class)
 @DisplayName("GameController REST API Tests")
-public class GameControllerTests {
+public class GameControllerTest {
 
     @Autowired
     private WebTestClient webTestClient;
