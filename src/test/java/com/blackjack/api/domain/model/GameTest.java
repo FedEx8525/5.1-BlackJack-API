@@ -10,9 +10,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static com.blackjack.api.domain.model.mother.DeckMother.*;
-import static com.blackjack.api.domain.model.mother.GameMother.*;
-import static com.blackjack.api.domain.model.mother.PlayerMother.defaultPlayer;
+import static com.blackjack.api.mother.DeckMother.*;
+import static com.blackjack.api.mother.GameMother.*;
+import static com.blackjack.api.mother.PlayerMother.defaultPlayer;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
