@@ -1,14 +1,13 @@
-package com.blackjack.api.domain.model.mother;
+package com.blackjack.api.mother;
 
 import com.blackjack.api.domain.enums.GameStatus;
 import com.blackjack.api.domain.model.Game;
-import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.valueobject.GameId;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;
 
-import static com.blackjack.api.domain.model.mother.DeckMother.*;
-import static com.blackjack.api.domain.model.mother.HandMother.*;
+import static com.blackjack.api.mother.DeckMother.*;
+import static com.blackjack.api.mother.HandMother.*;
 
 public class GameMother {
 
