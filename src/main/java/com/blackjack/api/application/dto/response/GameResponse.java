@@ -19,27 +19,28 @@ public record GameResponse(
         int remainingCards
 ) {
 
-    public static GameResponse from(Game game) {
+   public static GameResponse from(Game game) {
+       if (game == null) return null;
+       
+       List<CardResponse> playerCards = (game.getPlayerHand() != null && game.getPlayerHand().getCards() != null)
+               ? game.getPlayerHand().getCards().stream().map(CardResponse::from).toList()
+               : List.of();
 
-        List<CardResponse> playerCards = game.getPlayerHand().getCards().stream()
-                        .map(CardResponse::from)
-                                .toList();
+       List<CardResponse> dealerCards = (game.getDealerHand() != null && game.getDealerHand().getCards() != null)
+               ? game.getDealerHand().getCards().stream().map(CardResponse::from).toList()
+               : List.of();
 
-        List<CardResponse> dealerCards = game.getDealerHand().getCards().stream()
-                        .map(CardResponse::from)
-                                .toList();
-
-        return new GameResponse(
-                game.getId().value(),
-                game.getPlayerId().value(),
-                playerCards,
-                dealerCards,
-                game.getPlayerHand().calculateScore().getValue(),
-                game.getDealerHand().calculateScore().getValue(),
-                game.getBet().getAmount().doubleValue(),
-                game.getStatus(),
-                game.getCreatedAt(),
-                game.getDeck().remainingCards());
-
-    }
+       return new GameResponse(
+               game.getId() != null ? game.getId().value() : "N/A",
+               game.getPlayerId() != null ? game.getPlayerId().value() : "N/A",
+               playerCards,
+               dealerCards,
+               game.getPlayerHand() != null ? game.getPlayerHand().calculateScore().getValue() : 0,
+               game.getDealerHand() != null ? game.getDealerHand().calculateScore().getValue() : 0,
+               game.getBet() != null ? game.getBet().getAmount().doubleValue() : 0.0,
+               game.getStatus(),
+               game.getCreatedAt() != null ? game.getCreatedAt() : LocalDateTime.now(),
+               game.getDeck() != null ? game.getDeck().remainingCards() : 0
+       );
+   }
 }
