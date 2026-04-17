@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.application;
+package com.blackjack.api.application;
 
 import com.blackjack.api.application.dto.command.CreateGameCommand;
 import com.blackjack.api.application.dto.command.PlaceBetCommand;
@@ -29,8 +29,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static com.blackjack.api.domain.model.mother.GameMother.*;
-import static com.blackjack.api.domain.model.mother.PlayerMother.*;
+import static com.blackjack.api.mother.GameMother.*;
+import static com.blackjack.api.mother.PlayerMother.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -81,7 +81,6 @@ public class GameServiceTest {
             when(gameRepository.save(any(Game.class)))
                     .thenReturn(Mono.just(newGame));
 
-            // When & Then
             StepVerifier.create(gameService.execute(command))
                     .expectNextMatches(response ->
                             response.playerId().equals(existingPlayer.getId().value()) &&
