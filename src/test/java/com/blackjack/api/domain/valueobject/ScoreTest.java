@@ -1,6 +1,5 @@
 package com.blackjack.api.domain.valueobject;
 
-import com.blackjack.api.domain.valueobject.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
