@@ -1,15 +1,14 @@
 package com.blackjack.api.domain.model;
 
 import com.blackjack.api.domain.exception.NullDomainException;
-import com.blackjack.api.domain.model.mother.HandMother;
+import com.blackjack.api.mother.HandMother;
 import com.blackjack.api.domain.valueobject.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static com.blackjack.api.domain.model.mother.CardMother.*;
-import static com.blackjack.api.domain.model.mother.CardMother.queenOfSpades;
-import static com.blackjack.api.domain.model.mother.HandMother.emptyHand;
+import static com.blackjack.api.mother.CardMother.*;
+import static com.blackjack.api.mother.HandMother.emptyHand;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HandTest {
@@ -99,11 +98,11 @@ public class HandTest {
         @Test
         @DisplayName("Should handle Ace as 1 when 11 would bust")
         void shouldHandleAceAs1When11WouldBust() {
-            Hand hand = HandMother.twentyOneWithoutBlackjack();
+            Hand hand = HandMother.multipleAcesHand();
 
             Score score = hand.calculateScore();
 
-            assertEquals(20, score.getValue());
+            assertEquals(21, score.getValue());
         }
 
         @Test
@@ -243,6 +242,4 @@ public class HandTest {
 
         }
     }
-
-
 }
