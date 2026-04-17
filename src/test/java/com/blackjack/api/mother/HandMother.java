@@ -1,10 +1,8 @@
-package com.blackjack.api.domain.model.mother;
+package com.blackjack.api.mother;
 
-import com.blackjack.api.domain.enums.Rank;
-import com.blackjack.api.domain.model.Card;
 import com.blackjack.api.domain.model.Hand;
 
-import static com.blackjack.api.domain.model.mother.CardMother.*;
+import static com.blackjack.api.mother.CardMother.*;
 
 public class HandMother {
 
