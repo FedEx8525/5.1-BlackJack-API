@@ -109,7 +109,7 @@ public class GameTest {
     }
 
     @Nested
-    @DisplayName("Hit Acrtion Tests")
+    @DisplayName("Hit Action Tests")
     class HitActionTests {
 
         @Test
