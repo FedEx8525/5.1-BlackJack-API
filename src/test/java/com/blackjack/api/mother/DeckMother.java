@@ -1,11 +1,11 @@
-package com.blackjack.api.domain.model.mother;
+package com.blackjack.api.mother;
 
 import com.blackjack.api.domain.model.Card;
 import com.blackjack.api.domain.model.Deck;
 
 import java.util.Stack;
 
-import static com.blackjack.api.domain.model.mother.CardMother.*;
+import static com.blackjack.api.mother.CardMother.*;
 
 public class DeckMother {
 
@@ -26,52 +26,38 @@ public class DeckMother {
     public static Deck deckForPlayerBlackjack() {
         Stack<Card> cards = new Stack<>();
 
-        cards.push(kingOfSpades());
-        cards.push(tenOfSpades());
+        cards.push(sixOfSpades());
         cards.push(aceOfSpades());
-        cards.push(sixOfSpades());
-
-        addCardsToStack(cards);
-        return Deck.from(cards);
-    }
-
-    public static Deck deckForDealerBlackjack() {
-        Stack<Card> cards = new Stack<>();
-
-        cards.push(kingOfSpades());
         cards.push(tenOfSpades());
-        cards.push(sixOfSpades());
-        cards.push(fiveOfSpades());
+        cards.push(kingOfSpades());
 
-        addCardsToStack(cards);
         return Deck.from(cards);
     }
+
 
     public static Deck deckForPlayerBust() {
         Stack<Card> cards = new Stack<>();
 
-        cards.push(kingOfSpades());
-        cards.push(tenOfSpades());
-        cards.push(sixOfSpades());
-        cards.push(fiveOfSpades());
-
         cards.push(nineOfSpades());
 
-        addCardsToStack(cards);
+        cards.push(fiveOfSpades());
+        cards.push(sixOfSpades());
+        cards.push(tenOfSpades());
+        cards.push(kingOfSpades());
+
         return Deck.from(cards);
     }
 
     public static Deck deckForDealerBust() {
         Stack<Card> cards = new Stack<>();
 
-        cards.push(kingOfSpades());
-        cards.push(tenOfSpades());
-        cards.push(sixOfSpades());
-        cards.push(fiveOfSpades());
-
         cards.push(nineOfSpades());
 
-        addCardsToStack(cards);
+        cards.push(fiveOfSpades());
+        cards.push(sixOfSpades());
+        cards.push(tenOfSpades());
+        cards.push(kingOfSpades());
+
         return Deck.from(cards);
     }
 
