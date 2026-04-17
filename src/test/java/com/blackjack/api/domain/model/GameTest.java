@@ -256,7 +256,7 @@ public class GameTest {
             Game game = completedGamePlayerBlackjack();
 
             Money winnings = game.calculateWinnings();
-            Money expected = game.getBet().multiply(2).add(game.getBet());
+            Money expected = game.getBet().multiply(2).add(game.getBet().divide(2));
 
             assertEquals(expected, winnings);
         }
