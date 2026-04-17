@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.model.mother;
+package com.blackjack.api.mother;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
