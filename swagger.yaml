@@ -1,0 +1,347 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: Game
+    description: Blackjack game management API
+  - name: Player
+    description: Player management API
+paths:
+  /play/{playerId}:
+    put:
+      tags:
+        - Player
+      summary: Change player name
+      description: Update the name of an existing player
+      operationId: updatePlayerName
+      parameters:
+        - name: playerId
+          in: path
+          description: Game Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdatePlayerNameRequest"
+        required: true
+      responses:
+        "200":
+          description: Name successfully updated
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PlayerResponse"
+        "404":
+          description: Player NOT found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PlayerResponse"
+        "400":
+          description: Ivalid data
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PlayerResponse"
+  /game/{id}/play:
+    post:
+      tags:
+        - Game
+      summary: Execute action
+      description: "Perform an action in the game (HIT, STAND, DOUBLE)"
+      operationId: play
+      parameters:
+        - name: id
+          in: path
+          description: Game id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlayRequest"
+        required: true
+      responses:
+        "200":
+          description: Action successfully executed
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+        "400":
+          description: Invalid action
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+        "404":
+          description: Game NOT found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+  /game/{id}/bet:
+    post:
+      tags:
+        - Game
+      summary: Place a bet
+      description: Set your bet for the game
+      operationId: placeBet
+      parameters:
+        - name: id
+          in: path
+          description: Game Id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaceBetRequest"
+        required: true
+      responses:
+        "200":
+          description: Bet successfully placed
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+        "400":
+          description: Invalid bet or insufficient balance
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+        "404":
+          description: Game NOT found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+  /game/new:
+    post:
+      tags:
+        - Game
+      summary: Create new game
+      description: "Create a new Blackjack game. If the player does not exist, it\
+        \ will be created automatically"
+      operationId: createGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateGameRequest"
+        required: true
+      responses:
+        "201":
+          description: Game successfully created
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+        "400":
+          description: Invalid data
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+  /ranking:
+    get:
+      tags:
+        - Player
+      summary: Get ranking
+      description: It retrieves the list of players ordered by win rate
+      operationId: getRanking
+      responses:
+        "200":
+          description: Ranking successfully obtained
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/RankingResponse"
+  /game/{id}:
+    get:
+      tags:
+        - Game
+      summary: Get game details
+      description: Get all game details by ID
+      operationId: getGame
+      parameters:
+        - name: id
+          in: path
+          description: Game Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Game found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+        "404":
+          description: Game NOT found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/GameResponse"
+  /game/{id}/delete:
+    delete:
+      tags:
+        - Game
+      summary: Delete game
+      description: Delete an existing game
+      operationId: deleteGame
+      parameters:
+        - name: id
+          in: path
+          description: Game Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Game successfully deleted
+        "404":
+          description: Game NOT found
+components:
+  schemas:
+    UpdatePlayerNameRequest:
+      type: object
+      properties:
+        newName:
+          type: string
+      required:
+        - newName
+    PlayerResponse:
+      type: object
+      properties:
+        playerId:
+          type: string
+        name:
+          type: string
+        balance:
+          type: number
+          format: double
+        gamesPlayed:
+          type: integer
+          format: int32
+        gameWon:
+          type: integer
+          format: int32
+        gameLost:
+          type: integer
+          format: int32
+        winRate:
+          type: number
+          format: double
+    PlayRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - HIT
+            - STAND
+            - DOUBLE
+            - SPLIT
+      required:
+        - action
+    CardResponse:
+      type: object
+      properties:
+        rank:
+          type: string
+        suit:
+          type: string
+        display:
+          type: string
+    GameResponse:
+      type: object
+      properties:
+        gameId:
+          type: string
+        playerId:
+          type: string
+        playerHand:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardResponse"
+        dealerHand:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardResponse"
+        playerScore:
+          type: integer
+          format: int32
+        dealerScore:
+          type: integer
+          format: int32
+        bet:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+            - IN_PROGRESS
+            - PLAYER_WIN
+            - DEALER_WIN
+            - TIE
+            - PLAYER_BLACKJACK
+            - PLAYER_BUSTED
+        createdAt:
+          type: string
+          format: date-time
+        remainingCards:
+          type: integer
+          format: int32
+    PlaceBetRequest:
+      type: object
+      properties:
+        betAmount:
+          type: number
+          format: double
+    CreateGameRequest:
+      type: object
+      properties:
+        playerName:
+          type: string
+      required:
+        - playerName
+    PlayerRankingEntry:
+      type: object
+      properties:
+        position:
+          type: integer
+          format: int32
+        playerId:
+          type: string
+        name:
+          type: string
+        gamesWon:
+          type: integer
+          format: int32
+        gamesPlayed:
+          type: integer
+          format: int32
+        winRate:
+          type: number
+          format: double
+    RankingResponse:
+      type: object
+      properties:
+        ranking:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlayerRankingEntry"
