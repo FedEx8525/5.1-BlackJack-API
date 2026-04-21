@@ -46,12 +46,12 @@ spring:
       operations-sorter: method
       tags-sorter: alpha
 
-  # Application Custom Properties
-  blackjack:
-    game:
-      initial-balance: 1000
-      min-bet: 10
-      max-bet: 500
+# Application Custom Properties
+blackjack:
+  game:
+    initial-balance: 1000
+    min-bet: 10
+    max-bet: 500
 
 ---
 
