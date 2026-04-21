@@ -17,6 +17,7 @@ spring:
       initial-size: 5
       max-size: 10
       max-life-time: 30m
+
 # SQL Initialization
   sql:
     init:
