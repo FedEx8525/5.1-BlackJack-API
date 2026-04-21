@@ -1,8 +1,8 @@
 package com.blackjack.api.domain.model;
 
-import com.blackjack.api.domain.exception.EmptyDomainException;
-import com.blackjack.api.domain.exception.NegativeDomainException;
-import com.blackjack.api.domain.exception.NullDomainException;
+import com.blackjack.api.domain.exception.domain.EmptyDomainException;
+import com.blackjack.api.domain.exception.domain.NegativeDomainException;
+import com.blackjack.api.domain.exception.domain.NullDomainException;
 import com.blackjack.api.domain.valueobject.Money;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

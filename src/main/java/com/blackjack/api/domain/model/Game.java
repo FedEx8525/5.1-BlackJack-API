@@ -2,9 +2,9 @@ package com.blackjack.api.domain.model;
 
 
 import com.blackjack.api.domain.enums.GameStatus;
-import com.blackjack.api.domain.exception.NegativeDomainException;
-import com.blackjack.api.domain.exception.NullDomainException;
-import com.blackjack.api.domain.exception.ValidateGameException;
+import com.blackjack.api.domain.exception.domain.NegativeDomainException;
+import com.blackjack.api.domain.exception.domain.NullDomainException;
+import com.blackjack.api.domain.exception.domain.ValidateGameException;
 import com.blackjack.api.domain.valueobject.GameId;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;

@@ -1,6 +1,6 @@
 package com.blackjack.api.domain.model;
 
-import com.blackjack.api.domain.exception.NullDomainException;
+import com.blackjack.api.domain.exception.domain.NullDomainException;
 import com.blackjack.api.mother.HandMother;
 import com.blackjack.api.domain.valueobject.Score;
 import org.junit.jupiter.api.DisplayName;

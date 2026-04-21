@@ -1,7 +1,7 @@
 package com.blackjack.api.domain.service;
 
 import com.blackjack.api.domain.enums.PlayAction;
-import com.blackjack.api.domain.exception.*;
+import com.blackjack.api.domain.exception.domain.*;
 import com.blackjack.api.domain.model.Game;
 import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.valueobject.Money;

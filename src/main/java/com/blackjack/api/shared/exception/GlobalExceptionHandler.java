@@ -1,7 +1,7 @@
 package com.blackjack.api.shared.exception;
 
-import com.blackjack.api.domain.exception.ApplicationException;
-import com.blackjack.api.domain.exception.DomainException;
+import com.blackjack.api.domain.exception.application.ApplicationException;
+import com.blackjack.api.domain.exception.domain.DomainException;
 import com.blackjack.api.infrastructure.adapter.in.rest.dto.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

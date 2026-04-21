@@ -5,7 +5,7 @@ import com.blackjack.api.application.dto.query.GetRankingQuery;
 import com.blackjack.api.application.dto.response.RankingResponse;
 import com.blackjack.api.application.port.out.PlayerRepository;
 import com.blackjack.api.application.service.PlayerService;
-import com.blackjack.api.domain.exception.PlayerNotFoundException;
+import com.blackjack.api.domain.exception.application.PlayerNotFoundException;
 import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.valueobject.PlayerId;
 import org.junit.jupiter.api.DisplayName;

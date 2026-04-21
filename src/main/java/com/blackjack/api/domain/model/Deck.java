@@ -2,7 +2,7 @@ package com.blackjack.api.domain.model;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
-import com.blackjack.api.domain.exception.EmptyDomainException;
+import com.blackjack.api.domain.exception.domain.EmptyDomainException;
 import lombok.Getter;
 
 import java.util.ArrayList;

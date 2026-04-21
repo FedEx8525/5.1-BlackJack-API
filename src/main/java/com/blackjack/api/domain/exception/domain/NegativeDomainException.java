@@ -1,4 +1,6 @@
-package com.blackjack.api.domain.exception;
+package com.blackjack.api.domain.exception.domain;
+
+import com.blackjack.api.domain.exception.domain.DomainException;
 
 public class NegativeDomainException extends DomainException {
     public static final String ERROR_CODE = "NEGATIVE_DOMAIN_ERROR";

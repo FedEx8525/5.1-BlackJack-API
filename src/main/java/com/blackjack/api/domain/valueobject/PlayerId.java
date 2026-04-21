@@ -1,6 +1,6 @@
 package com.blackjack.api.domain.valueobject;
 
-import com.blackjack.api.domain.exception.EmptyDomainException;
+import com.blackjack.api.domain.exception.domain.EmptyDomainException;
 
 import java.util.Objects;
 import java.util.UUID;
