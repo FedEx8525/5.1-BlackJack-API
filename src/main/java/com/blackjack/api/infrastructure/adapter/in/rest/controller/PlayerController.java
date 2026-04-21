@@ -57,7 +57,7 @@ public class PlayerController {
                         log.info("Ranking obtained with {} players", ranking.ranking().size()));
     }
 
-    @PutMapping("/play/{playerId}")
+    @PutMapping("/player/{playerId}")
     @Operation(
             summary = "Change player name",
             description = "Update the name of an existing player"
@@ -74,7 +74,7 @@ public class PlayerController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Ivalid data"
+                    description = "Invalid data"
             )
     })
     public Mono<PlayerResponse> updatePlayerName(
