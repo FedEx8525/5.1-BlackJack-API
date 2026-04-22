@@ -1,6 +1,6 @@
 package com.blackjack.api.domain.valueobject;
 
-import com.blackjack.api.domain.exception.NegativeDomainException;
+import com.blackjack.api.domain.exception.domain.NegativeDomainException;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 

@@ -1,5 +1,6 @@
-package com.blackjack.api.domain.exception;
+package com.blackjack.api.domain.exception.application;
 
+import com.blackjack.api.domain.exception.application.ApplicationException;
 import com.blackjack.api.domain.valueobject.GameId;
 
 public class GameNotFoundException extends ApplicationException {

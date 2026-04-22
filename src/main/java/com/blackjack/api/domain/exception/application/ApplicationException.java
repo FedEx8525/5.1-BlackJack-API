@@ -1,4 +1,4 @@
-package com.blackjack.api.domain.exception;
+package com.blackjack.api.domain.exception.application;
 
 public abstract class ApplicationException extends RuntimeException {
     private final String errorCode;

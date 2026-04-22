@@ -9,10 +9,10 @@ import com.blackjack.api.application.port.out.PlayerRepository;
 import com.blackjack.api.application.service.GameService;
 import com.blackjack.api.domain.enums.GameStatus;
 import com.blackjack.api.domain.enums.PlayAction;
-import com.blackjack.api.domain.exception.GameNotFoundException;
-import com.blackjack.api.domain.exception.InsufficientBalanceException;
-import com.blackjack.api.domain.exception.InvalidBetException;
-import com.blackjack.api.domain.exception.PlayerNotFoundException;
+import com.blackjack.api.domain.exception.application.GameNotFoundException;
+import com.blackjack.api.domain.exception.domain.InsufficientBalanceException;
+import com.blackjack.api.domain.exception.domain.InvalidBetException;
+import com.blackjack.api.domain.exception.application.PlayerNotFoundException;
 import com.blackjack.api.domain.model.Game;
 import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.service.GameDomainService;
@@ -29,8 +29,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static com.blackjack.api.mother.GameMother.*;
-import static com.blackjack.api.mother.PlayerMother.*;
+import static com.blackjack.api.domain.mother.GameMother.*;
+import static com.blackjack.api.domain.mother.PlayerMother.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -252,7 +252,7 @@ public class GameServiceTest {
                             response.gameId().equals(game.getId().value()))
                     .verifyComplete();
 
-            verify(gameDomainService).executeAction(game, player, PlayAction.HIT);
+            verify(gameDomainService).executeAction(eq(game), eq(player), eq(PlayAction.HIT));
         }
 
         @Test
@@ -275,17 +275,19 @@ public class GameServiceTest {
             doAnswer(invocation -> {
                 game.stand();
                 return null;
-            }).when(gameDomainService).executeAction(any(), any(), any());
+            }).when(gameDomainService).executeAction(any(Game.class), any(Player.class), any());
 
-            when(gameDomainService.resolveGame(any(), any()))
+            when(gameDomainService.resolveGame(eq(game), eq(player)))
                     .thenReturn(Money.of(100.0));
 
             StepVerifier.create(gameService.execute(command))
-                    .expectNextCount(1)
+                    .expectNextMatches(response -> response.gameId().equals(game.getId().value()))
                     .verifyComplete();
 
             verify(gameDomainService).executeAction(game, player, PlayAction.STAND);
+            verify(gameDomainService).resolveGame(game, player);
             verify(playerRepository, times(1)).save(player);
+            verify(gameRepository).save(game);
         }
     }
 

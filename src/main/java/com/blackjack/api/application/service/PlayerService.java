@@ -7,7 +7,7 @@ import com.blackjack.api.application.dto.response.RankingResponse;
 import com.blackjack.api.application.port.in.GetRankingUseCase;
 import com.blackjack.api.application.port.in.UpdatePlayerNameUseCase;
 import com.blackjack.api.application.port.out.PlayerRepository;
-import com.blackjack.api.domain.exception.PlayerNotFoundException;
+import com.blackjack.api.domain.exception.application.PlayerNotFoundException;
 import com.blackjack.api.domain.valueobject.PlayerId;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

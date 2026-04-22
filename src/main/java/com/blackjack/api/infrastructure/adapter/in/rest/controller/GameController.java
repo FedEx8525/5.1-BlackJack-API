@@ -135,7 +135,7 @@ public class GameController {
     @PostMapping("/{id}/play")
     @Operation(
             summary = "Execute action",
-            description = "Perform an action in the game (HIT, STAND, DOUBLE)"
+            description = "Perform an action in the game (HIT, STAND)"
     )
     @ApiResponses({
             @ApiResponse(
