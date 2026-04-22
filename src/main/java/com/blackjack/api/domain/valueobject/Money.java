@@ -39,11 +39,13 @@ public class Money {
         return new Money(this.amount.subtract(other.amount));
     }
 
-    public Money multiply(int multiplier) {
+    public Money multiply(double multiplier) {
         return new Money(this.amount.multiply(BigDecimal.valueOf(multiplier)));
     }
 
-    public Money divide(int divider) { return new Money(this.amount.divide(BigDecimal.valueOf(divider))); }
+    public boolean isZero() { return this.amount.compareTo(BigDecimal.ZERO) == 0; }
+
+    public boolean isZeroOrLess() { return this.amount.compareTo(BigDecimal.ZERO) <= 0; }
 
     public boolean isGreaterThan(Money other) {
         return this.amount.compareTo(other.amount) > 0;
