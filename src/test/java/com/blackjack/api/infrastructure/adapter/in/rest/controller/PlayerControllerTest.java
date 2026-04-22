@@ -4,7 +4,7 @@ import com.blackjack.api.application.dto.response.PlayerResponse;
 import com.blackjack.api.application.dto.response.RankingResponse;
 import com.blackjack.api.application.port.in.GetRankingUseCase;
 import com.blackjack.api.application.port.in.UpdatePlayerNameUseCase;
-import com.blackjack.api.domain.exception.PlayerNotFoundException;
+import com.blackjack.api.domain.exception.application.PlayerNotFoundException;
 import com.blackjack.api.infrastructure.adapter.in.rest.dto.request.UpdatePlayerNameRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

@@ -1,6 +1,6 @@
 package com.blackjack.api.domain.service;
 
-import com.blackjack.api.domain.exception.InvalidBetException;
+import com.blackjack.api.domain.exception.domain.InvalidBetException;
 import com.blackjack.api.domain.valueobject.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

@@ -1,14 +1,14 @@
 package com.blackjack.api.domain.model;
 
-import com.blackjack.api.domain.exception.NullDomainException;
-import com.blackjack.api.mother.HandMother;
+import com.blackjack.api.domain.exception.domain.NullDomainException;
+import com.blackjack.api.domain.mother.HandMother;
 import com.blackjack.api.domain.valueobject.Score;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static com.blackjack.api.mother.CardMother.*;
-import static com.blackjack.api.mother.HandMother.emptyHand;
+import static com.blackjack.api.domain.mother.CardMother.*;
+import static com.blackjack.api.domain.mother.HandMother.emptyHand;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HandTest {

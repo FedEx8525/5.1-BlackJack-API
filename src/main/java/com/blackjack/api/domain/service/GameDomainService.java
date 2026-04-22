@@ -1,10 +1,10 @@
 package com.blackjack.api.domain.service;
 
 import com.blackjack.api.domain.enums.PlayAction;
-import com.blackjack.api.domain.exception.InsufficientBalanceException;
-import com.blackjack.api.domain.exception.InvalidPlayException;
-import com.blackjack.api.domain.exception.NullDomainException;
-import com.blackjack.api.domain.exception.ValidateGameException;
+import com.blackjack.api.domain.exception.domain.InsufficientBalanceException;
+import com.blackjack.api.domain.exception.domain.InvalidPlayException;
+import com.blackjack.api.domain.exception.domain.NullDomainException;
+import com.blackjack.api.domain.exception.domain.ValidateGameException;
 import com.blackjack.api.domain.model.Deck;
 import com.blackjack.api.domain.model.Game;
 import com.blackjack.api.domain.model.Player;

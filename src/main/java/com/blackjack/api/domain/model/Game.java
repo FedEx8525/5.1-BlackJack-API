@@ -2,9 +2,9 @@ package com.blackjack.api.domain.model;
 
 
 import com.blackjack.api.domain.enums.GameStatus;
-import com.blackjack.api.domain.exception.NegativeDomainException;
-import com.blackjack.api.domain.exception.NullDomainException;
-import com.blackjack.api.domain.exception.ValidateGameException;
+import com.blackjack.api.domain.exception.domain.NegativeDomainException;
+import com.blackjack.api.domain.exception.domain.NullDomainException;
+import com.blackjack.api.domain.exception.domain.ValidateGameException;
 import com.blackjack.api.domain.valueobject.GameId;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;
@@ -17,74 +17,69 @@ import java.time.LocalDateTime;
 
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Builder(toBuilder = true)
+
 public class Game {
 
     @EqualsAndHashCode.Include
     private final GameId id;
-
     private final PlayerId playerId;
+    private final LocalDateTime createdAt;
+    private final Hand playerHand;
+    private final Hand dealerHand;
+    private final Deck deck;
+    private Money bet;
+    private GameStatus status;
 
-    @Builder.Default
-    private  final LocalDateTime createdAt = LocalDateTime.now();
+    @Builder(toBuilder = true)
+    private Game(GameId id,
+                 PlayerId playerId,
+                 LocalDateTime createdAt,
+                 Hand playerHand,
+                 Hand dealerHand,
+                 Deck deck,
+                 Money bet,
+                 GameStatus status) {
+        this.id = id;
+        this.playerId = playerId;
+        this.createdAt = createdAt != null ? createdAt : LocalDateTime.now();
+        this.playerHand = playerHand;
+        this.dealerHand = dealerHand;
+        this.deck = deck;
+        this.bet = bet != null ? bet : Money.zero();
+        this.status = status != null ? status : GameStatus.IN_PROGRESS;
+    }
 
-    private Hand playerHand;
-    private Hand dealerHand;
-    private Deck deck;
-
-    @Builder.Default
-    private Money bet = Money.zero();
-
-    @Builder.Default
-    private GameStatus status = GameStatus.IN_PROGRESS;
 
     public static Game create(PlayerId playerId, Deck deck) {
-        if (playerId == null) {
-            throw new NullDomainException("The playerId cannot be null!");
-        }
-        if (deck == null) {
-            throw  new NullDomainException("The deck cannot be null");
-        }
+        validateInitialCreation(playerId, deck);
 
         Hand playerHand = Hand.empty();
         Hand dealerHand = Hand.empty();
+        dealInitialCards(playerHand, dealerHand, deck);
 
-        playerHand.addCard(deck.deal());
-        dealerHand.addCard(deck.deal());
-        playerHand.addCard(deck.deal());
-        dealerHand.addCard(deck.deal());
-
-        Game game = Game.builder()
+        return Game.builder()
                 .id(GameId.generate())
                 .playerId(playerId)
                 .playerHand(playerHand)
                 .dealerHand(dealerHand)
                 .deck(deck)
+                .status(evaluateInitialStatus(playerHand, dealerHand))
                 .build();
-
-        if (playerHand.isBlackjack() && dealerHand.isBlackjack()) {
-            game.status = GameStatus.TIE;
-        } else if (playerHand.isBlackjack()) {
-            game.status = GameStatus.PLAYER_BLACKJACK;
-        } else if (dealerHand.isBlackjack()) {
-            game.status = GameStatus.DEALER_WIN;
-        }
-
-        return game;
     }
 
     public void placeBet(Money betAmount) {
-        if(status != GameStatus.IN_PROGRESS) {
-            throw new ValidateGameException("You cannot bet. The game is finish");
-        }
-        if(betAmount == null || betAmount.equals(Money.zero())) {
+        ensureGameIsInProgress();
+
+        if (betAmount == null || betAmount.isZeroOrLess()) {
             throw new NegativeDomainException("The bet must be greater than zero");
         }
         this.bet = betAmount;
     }
 
     public void hit() {
-        validateGameInProgress();
+        ensureGameIsInProgress();
+        ensureBetIsPlaced();
+
         playerHand.addCard(deck.deal());
 
         if (playerHand.isBusted()) {
@@ -93,40 +88,11 @@ public class Game {
     }
 
     public void stand() {
-        validateGameInProgress();
+        ensureGameIsInProgress();
+        ensureBetIsPlaced();
 
-        while (dealerHand.calculateScore().getValue() < 17) {
-            dealerHand.addCard(deck.deal());
-        }
-
-        determinateWinner();
-    }
-
-    public  void determinateWinner() {
-        Score playerScore = playerHand.calculateScore();
-        Score dealerScore = dealerHand.calculateScore();
-
-        if (playerHand.isBusted()) {
-            this.status = GameStatus.PLAYER_BUSTED;
-            return;
-        }
-
-        if (dealerHand.isBusted()) {
-            this.status = GameStatus.PLAYER_WIN;
-            return;
-        }
-        if (playerScore.getValue() > dealerScore.getValue()) {
-            this.status = GameStatus.PLAYER_WIN;
-        } else if (dealerScore.getValue() > playerScore.getValue()) {
-            this.status = GameStatus.DEALER_WIN;
-        } else {
-            this.status = GameStatus.TIE;
-        }
-    }
-
-    private void validateGameInProgress() {
-        if (status != GameStatus.IN_PROGRESS) throw new ValidateGameException("Game Over");
-        if (bet.equals(Money.zero())) throw new ValidateGameException("Bet cannot be zero");
+        playDealerTurn();
+        this.status = determineFinalStatus();
     }
 
     public boolean isFinished() {
@@ -134,12 +100,67 @@ public class Game {
     }
 
     public Money calculateWinnings() {
+        if (!isFinished()) {
+            throw new ValidateGameException("The game is not finished");
+        }
+
         return switch (status) {
-            case PLAYER_BLACKJACK -> bet.multiply(2).add(bet.divide(2));
-            case PLAYER_WIN -> bet.multiply(2);
+            case PLAYER_BLACKJACK -> bet.multiply(2.5);
+            case PLAYER_WIN -> bet.multiply(2.0);
             case TIE -> bet;
-            case DEALER_WIN, PLAYER_BUSTED -> Money.zero();
-            case IN_PROGRESS -> throw new ValidateGameException("The game is not finish");
+            default -> Money.zero();
         };
     }
+
+    private void playDealerTurn() {
+        while (dealerHand.calculateScore().getValue() < 17) {
+            dealerHand.addCard((deck.deal()));
+        }
+    }
+
+    private GameStatus determineFinalStatus() {
+        if (dealerHand.isBusted()) {
+            return GameStatus.PLAYER_WIN;
+        }
+
+        Score playerScore = playerHand.calculateScore();
+        Score dealerScore = dealerHand.calculateScore();
+
+        if (playerScore.beats(dealerScore)) return GameStatus.PLAYER_WIN;
+        if (dealerScore.beats(playerScore)) return GameStatus.DEALER_WIN;
+        return GameStatus.TIE;
+    }
+
+    private static void dealInitialCards(Hand playerHand, Hand dealerHand, Deck deck) {
+        playerHand.addCard(deck.deal());
+        dealerHand.addCard(deck.deal());
+        playerHand.addCard(deck.deal());
+        dealerHand.addCard(deck.deal());
+    }
+
+    private static GameStatus evaluateInitialStatus(Hand playerHand, Hand dealerHand) {
+        if (playerHand.isBlackjack() && dealerHand.isBlackjack()) return GameStatus.TIE;
+        if (playerHand.isBlackjack()) return GameStatus.PLAYER_BLACKJACK;
+        if (dealerHand.isBlackjack()) return GameStatus.DEALER_WIN;
+        return GameStatus.IN_PROGRESS;
+    }
+
+    private void ensureGameIsInProgress() {
+        if (isFinished()) {
+            throw new ValidateGameException("Action not allowed. The game is already finished.");
+        }
+    }
+
+    private void ensureBetIsPlaced() {
+        if (bet.isZero()) {
+            throw new ValidateGameException("A bet must be placed before playing.");
+        }
+    }
+
+    private static void validateInitialCreation(PlayerId playerId, Deck deck) {
+        if (playerId == null) throw new NullDomainException("The player cannot be null.");
+        if (deck == null) throw  new NullDomainException("The deck cannot be null.");
+    }
+
+
 }

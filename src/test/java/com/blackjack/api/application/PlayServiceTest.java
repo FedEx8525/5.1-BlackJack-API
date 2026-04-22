@@ -5,7 +5,7 @@ import com.blackjack.api.application.dto.query.GetRankingQuery;
 import com.blackjack.api.application.dto.response.RankingResponse;
 import com.blackjack.api.application.port.out.PlayerRepository;
 import com.blackjack.api.application.service.PlayerService;
-import com.blackjack.api.domain.exception.PlayerNotFoundException;
+import com.blackjack.api.domain.exception.application.PlayerNotFoundException;
 import com.blackjack.api.domain.model.Player;
 import com.blackjack.api.domain.valueobject.PlayerId;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static com.blackjack.api.mother.PlayerMother.*;
+import static com.blackjack.api.domain.mother.PlayerMother.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 

@@ -2,7 +2,7 @@ package com.blackjack.api.infrastructure.adapter.out.persistence.mongo;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
-import com.blackjack.api.domain.exception.InvalidCardException;
+import com.blackjack.api.domain.exception.domain.InvalidCardException;
 import com.blackjack.api.domain.model.Card;
 import com.blackjack.api.domain.model.Deck;
 import com.blackjack.api.domain.model.Game;
@@ -10,7 +10,6 @@ import com.blackjack.api.domain.model.Hand;
 import com.blackjack.api.domain.valueobject.GameId;
 import com.blackjack.api.domain.valueobject.Money;
 import com.blackjack.api.domain.valueobject.PlayerId;
-import org.bson.types.Symbol;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
