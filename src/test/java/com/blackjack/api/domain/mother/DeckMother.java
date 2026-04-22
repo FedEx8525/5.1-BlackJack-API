@@ -1,11 +1,11 @@
-package com.blackjack.api.mother;
+package com.blackjack.api.domain.mother;
 
 import com.blackjack.api.domain.model.Card;
 import com.blackjack.api.domain.model.Deck;
 
 import java.util.Stack;
 
-import static com.blackjack.api.mother.CardMother.*;
+import static com.blackjack.api.domain.mother.CardMother.*;
 
 public class DeckMother {
 

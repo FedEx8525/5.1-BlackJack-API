@@ -1,8 +1,8 @@
-package com.blackjack.api.mother;
+package com.blackjack.api.domain.mother;
 
 import com.blackjack.api.domain.model.Hand;
 
-import static com.blackjack.api.mother.CardMother.*;
+import static com.blackjack.api.domain.mother.CardMother.*;
 
 public class HandMother {
 
@@ -51,12 +51,12 @@ public class HandMother {
     public static Hand handWithValue(int value) {
         Hand hand = Hand.empty();
 
-        if(value == 21) {
+        if (value == 21) {
             return blackjackHand();
-        } else if(value == 15) {
+        } else if (value == 15) {
             hand.addCard(tenOfSpades());
             hand.addCard(fiveOfSpades());
-        } else if(value == 10) {
+        } else if (value == 10) {
             hand.addCard(tenOfSpades());
         }
         return hand;

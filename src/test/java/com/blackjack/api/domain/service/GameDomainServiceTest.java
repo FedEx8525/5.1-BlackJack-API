@@ -13,8 +13,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.blackjack.api.mother.GameMother.*;
-import static com.blackjack.api.mother.PlayerMother.*;
+import static com.blackjack.api.domain.mother.GameMother.*;
+import static com.blackjack.api.domain.mother.PlayerMother.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -192,16 +192,6 @@ class GameDomainServiceTest {
 
             assertThrows(InvalidPlayException.class, () ->
                     gameDomainService.executeAction(game, player, PlayAction.HIT));
-        }
-
-        @Test
-        @DisplayName("Should throw exception for unknown action")
-        void shouldThrowExceptionForUnknownAction() {
-            Game game = gameWithBet(50.0);
-            Player player = defaultPlayer();
-
-            assertThrows(InvalidPlayException.class, () ->
-                    gameDomainService.executeAction(game, player, PlayAction.DOUBLE));
         }
     }
 

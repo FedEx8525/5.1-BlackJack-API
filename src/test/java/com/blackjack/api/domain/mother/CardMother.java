@@ -1,10 +1,8 @@
-package com.blackjack.api.mother;
+package com.blackjack.api.domain.mother;
 
 import com.blackjack.api.domain.enums.Rank;
 import com.blackjack.api.domain.enums.Suit;
 import com.blackjack.api.domain.model.Card;
-
-import java.util.List;
 
 public class CardMother {
 
